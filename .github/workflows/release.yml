@@ -42,7 +42,7 @@ jobs:
       - run: npm run build
 
       - name: Zip dist
-        run: zip -r simple-rakuten-v${{ steps.version.outputs.version }}.zip dist/
+        run: cd dist && zip -r ../simple-rakuten-v${{ steps.version.outputs.version }}.zip .
 
       - name: Create Release
         uses: softprops/action-gh-release@v3
