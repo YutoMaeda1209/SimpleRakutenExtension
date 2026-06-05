@@ -20,17 +20,17 @@
 
 ## アプローチ
 
-`#pagebody` を非表示にして新しい `#sre-page` ラッパーを挿入し、スライドショーと購入セクションのみを表示する。
+`#pagebody` の直前に新しい `#sre-page` ラッパーを挿入し、スライドショーと購入セクションを最上部に配置する。`#pagebody` はそのまま表示し、元のページ内容（商品詳細・レビュー等）はスクロールすれば確認できる。
 
 ```
 #rakutenLimitedId_header（変更なし）
+.pc-item-page-header（変更なし）
 #sre-page（新規挿入）
     └ ショップトップリンク
     └ スライドショー（約 500px）
     └ 購入セクション（#pagebody から移動）
-#pagebody（display: none）
-.pc-item-page-header（display: none）
-#item-page-app（display: none）
+#pagebody（変更なし・元のページ内容をそのまま表示）
+#item-page-app（変更なし）
 ```
 
 ## 実装方針
@@ -49,9 +49,8 @@ https://item.rakuten.co.jp/*/*
 2. スライドショー要素を生成
 3. `findPurchaseSection()` で購入セクションを特定（`#rakutenLimitedId_aroundCart` と `#rakutenLimitedId_cart` の最近共通祖先）
 4. `#sre-page` ラッパーを生成し、ショップリンク・スライドショー・購入セクションを配置
-5. `#pagebody` の直後に `#sre-page` を挿入し、`#pagebody` を `display: none` にする
-6. `.pc-item-page-header`・`#item-page-app` を `display: none` にする
-7. `ResizeObserver` で購入セクションのリサイズを監視し、スライドショー幅を動的に同期する
+5. `#pagebody` の直前に `#sre-page` を挿入する（`#pagebody` は非表示にしない）
+6. `ResizeObserver` で購入セクションのリサイズを監視し、スライドショー幅を動的に同期する
 
 ### 画像の解像度
 
@@ -93,8 +92,7 @@ tsconfig.json
 ビルドコマンド:
 
 ```
-npm run build   # 一回ビルド
-npm run watch   # ファイル変更を監視して自動ビルド
+npm run build
 ```
 
 ## 考慮事項
@@ -105,7 +103,7 @@ npm run watch   # ファイル変更を監視して自動ビルド
 
 ### ページのレンダリングタイミング
 
-content script は `document_idle` で実行する。一部コンテンツ（`#item-page-app` 等）が非同期で描画されるが、非表示にするだけであるため動的な待機は不要。
+content script は `document_idle` で実行する。購入セクションは同期的に描画されるため動的な待機は不要。
 
 ### manifest.json の主要設定
 
