@@ -37,7 +37,24 @@ npm run build
 
 ## Development
 
+### DevContainer (recommended)
+
+With VS Code and the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers), you can start developing immediately without installing Node.js locally.
+
+1. Open this repository in VS Code
+2. Open the command palette (`Ctrl+Shift+P`) and run **Dev Containers: Reopen in Container**
+3. Once the container starts, build from the terminal
+
 ```bash
+npm run build
+```
+
+### Local environment
+
+Requires Node.js.
+
+```bash
+npm install
 npm run build   # Build (with minification)
 ```
 
@@ -53,6 +70,8 @@ dist/               # Build output (loaded by Chrome)
 ```
 
 ## Target pages
+
+Works on Rakuten product pages.
 
 ```
 https://item.rakuten.co.jp/*/*

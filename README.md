@@ -37,7 +37,24 @@ npm run build
 
 ## 開発
 
+### DevContainer（推奨）
+
+VS Code と [Dev Containers 拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) を使うと、Node.js 等の環境構築なしにすぐ開発を始められます。
+
+1. VS Code でこのリポジトリを開く
+2. コマンドパレット（`Ctrl+Shift+P`）で「Dev Containers: Reopen in Container」を実行する
+3. コンテナ起動後、ターミナルでビルドを実行する
+
 ```bash
+npm run build
+```
+
+### ローカル環境
+
+Node.js が必要です。
+
+```bash
+npm install
 npm run build   # ビルド（minify あり）
 ```
 
@@ -53,6 +70,8 @@ dist/               # ビルド成果物（Chrome に読み込む）
 ```
 
 ## 対象ページ
+
+楽天市場の商品ページで動作します。
 
 ```
 https://item.rakuten.co.jp/*/*
