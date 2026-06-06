@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Simple Rakuten",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "楽天市場の商品ページで画像をスライドショーにまとめ、カートボタンまでのスクロールを減らします。",
   "icons": {
     "16": "icons/icon16.png",
